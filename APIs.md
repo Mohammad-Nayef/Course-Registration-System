@@ -10,7 +10,7 @@ POST: api/register
 
 POST: api/login
 {
-    'student_number': 'xxxx',
+    'email': 'xxx@xxx',
     'password': 'xxxx'
 }
 
