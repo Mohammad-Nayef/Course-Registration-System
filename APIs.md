@@ -7,7 +7,6 @@ POST: api/register
     'email': 'xxx@xxx',
     'password': 'xxxx'
 }
-returns: student_number
 
 POST: api/login
 {
