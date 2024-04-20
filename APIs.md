@@ -29,6 +29,19 @@ returns:
         }
     ]
 
+GET: api/courses/<course-code>
+returns:
+    course: {
+            'name': 'xxxx',
+            'code': 'xxxx',
+            'instructor': 'xxxx',
+            'capacity': x,
+            'enrollments': x,
+            'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
+            'description': 'xxxx',
+            'prerequisites': 'xxxx'
+    }
+
 POST: api/registered-courses
 {
     'course_code': 'xxxx'
