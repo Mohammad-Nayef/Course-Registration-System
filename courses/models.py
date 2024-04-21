@@ -3,26 +3,33 @@ from django.contrib.auth.models import User
 
 
 class CourseSchedule(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True)
+    id = models.AutoField(primary_key=True)
     days = models.CharField(max_length=70)
-    startTime = models.TimeField()
-    endTime = models.TimeField()
-    roomNo = models.IntegerField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    room_no = models.IntegerField()
+
+    class Meta:
+        db_table = 'CoursesSchedules'
 
 
 class Course(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=50, null=False)
     description = models.CharField(max_length=200)
-    prerequisiteCode = models.CharField(models.ForeignKey('self', on_delete=models.SET_NULL), max_length=20)
+    prerequisite_code = models.CharField(models.ForeignKey('self', on_delete=models.SET_NULL), max_length=20, null=True)
     instructor = models.CharField(max_length=50)
     capacity = models.IntegerField()
-    scheduleId = models.IntegerField(models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL))
+    schedule_id = models.IntegerField(models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL))
+
+    class Meta:
+        db_table = 'Courses'
 
 
 class Enrollment(models.Model):
-    studentId = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
-    courseId = models.IntegerField(models.ForeignKey(Course, on_delete=models.CASCADE))
+    student_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
+    course_code = models.CharField(models.ForeignKey(Course, on_delete=models.CASCADE), max_length=20)
 
     class Meta:
-        unique_together = ('studentId', 'courseId')
+        db_table = "Enrollments"
+        unique_together = ('student_id', 'course_code')

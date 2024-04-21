@@ -22,10 +22,10 @@ returns:
             'code': 'xxxx',
             'instructor': 'xxxx',
             'capacity': x,
-            'enrollments': x,
+            'enrollmentsCount': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
             'description': 'xxxx',
-            'prerequisites': 'xxxx'
+            'prerequisite': 'xxxx'
         }
     ]
 
@@ -36,10 +36,13 @@ returns:
             'code': 'xxxx',
             'instructor': 'xxxx',
             'capacity': x,
-            'enrollments': x,
+            'enrollmentsCount': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
             'description': 'xxxx',
-            'prerequisites': 'xxxx'
+            'prerequisite': {
+                'code': 'xxxx',
+                'name': 'xxxx'
+            }
     }
 
 POST: api/registered-courses
