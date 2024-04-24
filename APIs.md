@@ -26,7 +26,10 @@ returns:
             'enrollments_count': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
             'description': 'xxxx',
-            'prerequisite': 'xxxx'
+            'prerequisite': {
+                'code': 'xxxx',
+                'name': 'xxxx'
+            }
         }
     ]
 
