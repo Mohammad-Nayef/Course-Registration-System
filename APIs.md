@@ -4,13 +4,14 @@ POST: api/register
 {
     'first_name': 'xxxx',
     'last_name': 'xxxx',
-    'email': 'xxx@xxx',
+    'email': 'xxx@xxx,
+    'username': 'xxx',
     'password': 'xxxx'
 }
 
 POST: api/login
 {
-    'email': 'xxx@xxx',
+    'username': 'xxx',
     'password': 'xxxx'
 }
 
@@ -22,7 +23,7 @@ returns:
             'code': 'xxxx',
             'instructor': 'xxxx',
             'capacity': x,
-            'enrollmentsCount': x,
+            'enrollments_count': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
             'description': 'xxxx',
             'prerequisite': 'xxxx'
@@ -36,7 +37,7 @@ returns:
             'code': 'xxxx',
             'instructor': 'xxxx',
             'capacity': x,
-            'enrollmentsCount': x,
+            'enrollments_count': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
             'description': 'xxxx',
             'prerequisite': {
