@@ -10,7 +10,7 @@ def get_course_details(request, code):
         course = Course.objects.get(code=code)
 
     except Course.DoesNotExist:
-        return Response(data=f'Course with code {code} is not found.', status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': f'Course with code \'{code}\' is not found.'}, status=status.HTTP_404_NOT_FOUND)
 
     schedule = CourseSchedule.objects.get(id=course.schedule_id)
     enrollments_count = Enrollment.objects.filter(course_code=course.code).count()
