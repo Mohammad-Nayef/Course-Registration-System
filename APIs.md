@@ -14,8 +14,11 @@ POST: api/login
     'username': 'xxx',
     'password': 'xxxx'
 }
+returns: {
+    'token': 'xxxx'
+}
 
-GET: api/search?text=searchText
+GET: api/search?text=searchText [Authenticated]
 returns: 
     [
         course: {
@@ -33,7 +36,7 @@ returns:
         }
     ]
 
-GET: api/courses/<course-code>
+GET: api/courses/<course-code> [Authenticated]
 returns:
     course: {
             'name': 'xxxx',
@@ -49,12 +52,12 @@ returns:
             }
     }
 
-POST: api/registered-courses
+POST: api/registered-courses [Authenticated]
 {
     'course_code': 'xxxx'
 }
 
-GET: api/registered-courses
+GET: api/registered-courses [Authenticated]
 returns: 
     [
         course: {
@@ -66,7 +69,7 @@ returns:
         }
     ]
 
-GET: api/notifications
+GET: api/notifications [Authenticated]
 returns: 
     [
         {
@@ -75,5 +78,5 @@ returns:
         }
     ]
 
-GET: reports and analytics 
+GET: reports and analytics [Authenticated]
 ```
