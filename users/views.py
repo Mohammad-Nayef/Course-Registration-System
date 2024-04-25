@@ -23,7 +23,9 @@ def login(request):
     password = request.data['password']
 
     if not username or not password:
-        return Response({'error': 'Username and password are required.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'error': 'Username and password are required.'}, 
+            status=status.HTTP_400_BAD_REQUEST)
 
     user = authenticate(username=username, password=password)
 
@@ -31,4 +33,6 @@ def login(request):
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key}, status=status.HTTP_200_OK)
     else:
-        return Response({'error': 'Username or password is invalid.'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            {'error': 'Username or password is invalid.'}, 
+            status=status.HTTP_401_UNAUTHORIZED)

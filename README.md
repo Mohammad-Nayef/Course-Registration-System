@@ -18,3 +18,5 @@ To start using the database and execute SQL queries, execute:
 ```sh
 USE reg;
 ```
+
+TODO: indexes, health check

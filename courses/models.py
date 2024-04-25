@@ -10,26 +10,26 @@ class CourseSchedule(models.Model):
     room_no = models.IntegerField()
 
     class Meta:
-        db_table = 'CoursesSchedules'
+        db_table = 'courses_schedules'
 
 
 class Course(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=50, null=False)
     description = models.CharField(max_length=200)
-    prerequisite_code = models.CharField(models.ForeignKey('self', on_delete=models.SET_NULL), max_length=20, null=True)
+    prerequisite = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
     instructor = models.CharField(max_length=50)
     capacity = models.IntegerField()
-    schedule_id = models.IntegerField(models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL))
+    schedule = models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL, null=True)
 
     class Meta:
-        db_table = 'Courses'
+        db_table = 'courses'
 
 
 class Enrollment(models.Model):
-    student_id = models.IntegerField(models.ForeignKey(User, on_delete=models.CASCADE))
-    course_code = models.CharField(models.ForeignKey(Course, on_delete=models.CASCADE), max_length=20)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    course =  models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "Enrollments"
-        unique_together = ('student_id', 'course_code')
+        db_table = 'enrollments'
+        unique_together = ('student', 'course')
