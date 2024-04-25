@@ -53,7 +53,9 @@ ROOT_URLCONF = 'reg.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'courses.templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

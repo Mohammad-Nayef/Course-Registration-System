@@ -19,4 +19,4 @@ To start using the database and execute SQL queries, execute:
 USE reg;
 ```
 
-TODO: indexes, health check
+TODO: indexes, health check, pagination, swagger ui
