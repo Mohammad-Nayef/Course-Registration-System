@@ -1,13 +1,15 @@
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from django.shortcuts import render
 
 
 @api_view(['POST'])
 def register(request):
+    print(request.data)
     user_serializer = UserSerializer(data=request.data)
     
     if user_serializer.is_valid():
@@ -36,3 +38,7 @@ def login(request):
         return Response(
             {'error': 'Username or password is invalid.'}, 
             status=status.HTTP_401_UNAUTHORIZED)
+    
+
+def login_page(request):
+    return render(request, 'login.html')
