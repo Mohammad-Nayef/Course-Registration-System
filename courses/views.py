@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import Course
+from .models import Course, Enrollment
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q, Count, F
@@ -49,3 +49,25 @@ def format_schedule(course):
     course.pop('schedule__days')
     course.pop('schedule__start_time')
     course.pop('schedule__end_time')
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def register_course(request):
+    course_code = request.data.get('course_code')
+    
+    try:
+        course = Course.objects.get(pk=course_code)
+
+    except Course.DoesNotExist:
+        return Response(
+            {'error': f'Course with code \'{course_code}\' is not found.'}, 
+            status=status.HTTP_404_NOT_FOUND)
+    
+    if Enrollment.objects.filter(student=request.user, course=course).exists():
+        return Response(
+            {'error': f'Course with code \'{course_code}\' is already registered.'}, 
+            status=status.HTTP_409_CONFLICT)
+    
+    Enrollment.objects.create(student=request.user, course=course)
+    return Response(status=status.HTTP_201_CREATED)
