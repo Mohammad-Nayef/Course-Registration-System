@@ -95,8 +95,7 @@
               <div class="login-form">
                 <h3 class="login-title">Welcome Back To PPU ECLASS</h3>
                 <h6>Enter the fields below to get started</h6>
-                <form method="POST" action="">
-                  {% csrf_token %}
+                <form id="loginForm">
                   <div class="form-group">
                     <label class="UserName" for="UserName">UserName</label>
                     <input type="text" class="form-control" id="UserName" name="username" placeholder="EX:Jdoe5">
@@ -120,11 +119,26 @@
     </div>
   </div>
   <script>
-    {% if messages %}
-      {% for message in messages %}
-        alert('{{message}}')
-      {% endfor %}
-    {% endif %}
-</script>
+      document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+        
+        fetch("/api/login", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+              window.location.href = '/';
+            } else {
+              alert('Failed to login.')
+            }
+        })
+        .catch(error => {
+          alert('An error occured.');
+        });
+    });
+  </script>
 </body>
 </html>

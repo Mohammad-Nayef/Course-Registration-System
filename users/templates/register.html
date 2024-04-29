@@ -154,14 +154,13 @@
       })
       .then(response => {
         if (response.ok) {
-          console.log('User registered successfully.');
           window.location.href = 'login';
         } else {
           alert('Failed to register user.');
         }
       })
       .catch(error => {
-        alert('Error:', error);
+        alert('An error occured.');
       });
     }
   

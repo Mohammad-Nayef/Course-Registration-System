@@ -4,8 +4,26 @@ from rest_framework import status
 from .serializers import UserSerializer
 from django.contrib.auth.models import auth
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+from django.shortcuts import redirect
+
+
+def register_page(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    return render(request, 'register.html')
+ 
+
+def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    return render(request, 'login.html')
+
+
+@api_view(['GET'])
+def home_page(request):
+    if not request.user.is_authenticated:
+        return redirect('login/')
+    return render(request, 'home.html')
 
 
 @api_view(['POST'])
@@ -19,33 +37,20 @@ def register(request):
     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def register_page(request):
-    return render(request, 'register.html')
+@api_view(['POST'])
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = auth.authenticate(username=username, password=password)
 
-
-def login_page(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('/') 
-        else:
-            messages.error(request, 'Invalid username or password. Please try again.')
-            return redirect('/login')
+    if user is not None:
+        auth.login(request, user)
+        return Response(status=status.HTTP_200_OK)
     else:
-        return render(request, 'login.html')
-    
+        return Response(
+            {'error': 'Username or password is invalid.'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 def logout(request):
     auth.logout(request)
     return redirect('/login') 
-
-
-@login_required(login_url='/login')
-def home_page(request):
-    return render(request, 'home.html')

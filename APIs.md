@@ -28,6 +28,8 @@ returns:
             'capacity': x,
             'enrollments_count': x,
             'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
+            'description': 'xxxx',
+            'prerequisite_name': 'xxxx'
         }
     ]
 
