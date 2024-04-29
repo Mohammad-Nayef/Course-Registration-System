@@ -56,8 +56,7 @@ returns:
             'name': 'xxxx',
             'code': 'xxxx',
             'instructor': 'xxxx',
-            'days': 'Sun, Tue, Thu',
-            'time': '1111 - 1111',
+            'schedule': 'Sunday, Tuesday, Thursday (9:00 - 10:00)'
         }
     ]
 

@@ -71,3 +71,9 @@ def register_course(request):
     
     Enrollment.objects.create(student=request.user, course=course)
     return Response(status=status.HTTP_201_CREATED)
+
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def get_registered_courses(request):
+#     # TODO

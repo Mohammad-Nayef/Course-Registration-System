@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
+  <title>Login</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body, html {
@@ -82,8 +82,8 @@
 
   <div class="container-fluid">
     <div class="row justify-content-center align-items-center" style="height: 100vh;">
-      <div class="col-md-10">
-        <div class="col-md-1"></div>
+      <div class="col-md-8">
+        <div class="col-md-2"></div>
         <div class="logo-login-container">
           <div class="row">
             <div class="col-md-6 logo-container">
@@ -94,77 +94,37 @@
             <div class="col-md-6">
               <div class="login-form">
                 <h3 class="login-title">Welcome Back To PPU ECLASS</h3>
-                <h6>Enter the field below to get started</h6>
-                <form>
-                  <div class="form-group">
-                    <label class="Fname" for="Fname">First Name</label>
-                    <input type="text" class="form-control" id="Fname" name="Fname" placeholder="EX:John">
-                  </div>
-                  <div class="form-group">
-                    <label class="Lname" for="Lname">Last Name</label>
-                    <input type="text" class="form-control" id="Lname" name="Lname" placeholder="EX:Doe">
-                  </div>
+                <h6>Enter the fields below to get started</h6>
+                <form method="POST" action="">
+                  {% csrf_token %}
                   <div class="form-group">
                     <label class="UserName" for="UserName">UserName</label>
-                    <input type="text" class="form-control" id="UserName" name="UserName" placeholder="EX:Jdoe5">
-                  </div>
-                  <div class="form-group">
-                    <label class="email-label" for="Email">Email</label>
-                    <input type="email" class="form-control" id="Email" name="Email" placeholder="name@mail.com">
+                    <input type="text" class="form-control" id="UserName" name="username" placeholder="EX:Jdoe5">
                   </div>
                   <div class="form-group">
                     <label class="pass-label" for="Password">Password</label>
-                    <input type="password" class="form-control" id="Password" name="Password" placeholder="8 Characters">
+                    <input type="password" class="form-control" id="Password" name="password" placeholder="8 Characters">
                   </div>
-                  <button type="submit" class="btn login-btn btn-block">Register</button>
+                  <button type="submit" class="btn login-btn btn-block">Log in </button>
                 </form>
+                <div>
+               <p class="register-link">For Sign Up  <a href="register" >Register Here</a></p>
+              </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-2"></div>
 
       </div>
     </div>
   </div>
   <script>
-    function registerUser(event) {
-      event.preventDefault(); 
-  
-      const firstName = document.getElementById('Fname').value;
-      const lastName = document.getElementById('Lname').value;
-      const email = document.getElementById('Email').value;
-      const username = document.getElementById('UserName').value;
-      const password = document.getElementById('Password').value;
-  
-      const formData = {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        username: username,
-        password: password
-      };
-  
-      fetch('api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log('User registered successfully.');
-        } else {
-          alert('Failed to register user.');
-        }
-      })
-      .catch(error => {
-        alert('Error:', error);
-      });
-    }
-  
-    document.querySelector('form').addEventListener('submit', registerUser);
-  </script>
+    {% if messages %}
+      {% for message in messages %}
+        alert('{{message}}')
+      {% endfor %}
+    {% endif %}
+</script>
 </body>
 </html>
