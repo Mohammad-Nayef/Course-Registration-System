@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    .container-fluid {
+      height: 100%;
+      padding: 0;
+      background-color: #1C5891;
+    }
+    .login-title, h6 {
+      color: #000000;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .login-form {
+      width: 80%;
+      max-width: 500px;
+      margin: auto;
+    }
+    .form-control {
+      margin-bottom: 2vh;
+      height: 5vh;
+      border-radius: 1vh;
+    }
+    .login-btn {
+      border-radius: 1vh;
+      padding: 1vh 0;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+    }
+    .logo_img {
+      margin-bottom: 5vh;
+      max-width: 100%;
+    }
+    .logo {
+      margin: 20px;
+      margin-left: 5px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    } 
+    .login-form {
+   
+      margin: auto;
+    }
+    .logo-container {
+        border-radius: 15px;
+       
+        margin: auto;
+    }
+    .logo-login-container {
+      background-color: white;
+      border-radius: 2vh;
+      padding: 5vh;
+    }
+    .email-label, .pass-label, .Fname, .Lname, .UserName {
+      font-size: 2vh;
+      color: #707070;
+      opacity: 100%;
+    }
+    .register-link {
+      color: #707070; 
+      margin-top: 4vh;
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+      <div class="col-md-10">
+        <div class="col-md-1"></div>
+        <div class="logo-login-container">
+          <div class="row">
+            <div class="col-md-6 logo-container">
+              <div class="logo">
+                <img src="https://www.ppu.edu/p/sites/all/themes/ppu2018/logo.png" alt="University Logo" class="logo_img">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="login-form">
+                <h3 class="login-title">Welcome Back To PPU ECLASS</h3>
+                <h6>Enter the field below to get started</h6>
+                <form>
+                  <div class="form-group">
+                    <label class="Fname" for="Fname">First Name</label>
+                    <input type="text" class="form-control" id="Fname" name="Fname" placeholder="EX:John">
+                  </div>
+                  <div class="form-group">
+                    <label class="Lname" for="Lname">Last Name</label>
+                    <input type="text" class="form-control" id="Lname" name="Lname" placeholder="EX:Doe">
+                  </div>
+                  <div class="form-group">
+                    <label class="UserName" for="UserName">UserName</label>
+                    <input type="text" class="form-control" id="UserName" name="UserName" placeholder="EX:Jdoe5">
+                  </div>
+                  <div class="form-group">
+                    <label class="email-label" for="Email">Email</label>
+                    <input type="email" class="form-control" id="Email" name="Email" placeholder="name@mail.com">
+                  </div>
+                  <div class="form-group">
+                    <label class="pass-label" for="Password">Password</label>
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="8 Characters">
+                  </div>
+                  <button type="submit" class="btn login-btn btn-block">Register</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+
+      </div>
+    </div>
+  </div>
+  <script>
+    function register(event) {
+      event.preventDefault(); 
+  
+      const firstName = document.getElementById('Fname').value;
+      const lastName = document.getElementById('Lname').value;
+      const email = document.getElementById('Email').value;
+      const username = document.getElementById('UserName').value;
+      const password = document.getElementById('Password').value;
+  
+      const formData = {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        username: username,
+        password: password
+      };
+  
+      fetch('api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('User registered successfully.');
+          window.location.href = 'login';
+        } else {
+          alert('Failed to register user.');
+        }
+      })
+      .catch(error => {
+        alert('Error:', error);
+      });
+    }
+  
+    document.querySelector('form').addEventListener('submit', register);
+  </script>
+</body>
+</html>
