@@ -6,5 +6,35 @@
 </head>
 <body>
     <h1 style="font-size: 100px;">yoink</h1>
+    <button id="logout">Logout</button>
+
+    <script>
+        document.getElementById('logout').addEventListener('click', function () {
+            var csrfToken = getCookie('csrftoken');
+
+            fetch('api/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error logging out');
+                }
+                window.location.href = '/'; 
+            })
+            .catch(error => {
+                console.error('Error logging out:', error);
+            });
+        });
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+    </script>
 </body>
 </html>

@@ -1,29 +1,9 @@
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Course, Enrollment
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from django.db.models import Q, Count, F
-
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_course_by_code(request, code):
-    try:
-        course = Course.objects.values(
-            'code', 'name', 'instructor', 'description', 'schedule__days', 'schedule__start_time', 
-            'schedule__end_time', 'capacity', enrollments_count=Count('enrollment'), 
-            prerequisite_name=F('prerequisite__name')
-        ).get(pk=code)
-        
-    except Course.DoesNotExist:
-        return Response(
-            {'error': f'Course with code \'{code}\' is not found.'}, 
-            status=status.HTTP_404_NOT_FOUND)
-    
-    format_schedule(course)
-
-    return Response(course)
+from django.db.models import Q, Count
 
 
 @api_view(['GET'])

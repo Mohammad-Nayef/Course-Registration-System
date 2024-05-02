@@ -14,9 +14,6 @@ POST: api/login
     'username': 'xxx',
     'password': 'xxxx'
 }
-returns: {
-    'token': 'xxxx'
-}
 
 GET: api/courses/search?query=searchText [Authenticated]
 returns: 
@@ -32,19 +29,6 @@ returns:
             'prerequisite_name': 'xxxx'
         }
     ]
-
-GET: api/courses/<course-code> [Authenticated]
-returns:
-    course: {
-            'name': 'xxxx',
-            'code': 'xxxx',
-            'instructor': 'xxxx',
-            'capacity': x,
-            'enrollments_count': x,
-            'schedule': 'Sunday, Tuesday, Thursday (9:00 - 10:00)',
-            'description': 'xxxx',
-            'prerequisite_name': 'xxxx'
-    }
 
 POST: api/registered-courses [Authenticated]
 {
