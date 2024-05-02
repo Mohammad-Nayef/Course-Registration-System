@@ -15,6 +15,8 @@ POST: api/login
     'password': 'xxxx'
 }
 
+POST: api/logout
+
 GET: api/courses/search?query=searchText [Authenticated]
 returns: 
     [
@@ -49,10 +51,7 @@ returns:
 GET: api/notifications [Authenticated]
 returns: 
     [
-        {
-            'content': 'xxxx',
-            'date_time': 'xxxx'
-        }
+        'xxxx'
     ]
 
 GET: reports and analytics [Authenticated]

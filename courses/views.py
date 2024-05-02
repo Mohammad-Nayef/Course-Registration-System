@@ -4,6 +4,8 @@ from .models import Course, Enrollment
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q, Count
+import datetime
+import calendar
 
 
 @api_view(['GET'])
@@ -11,7 +13,7 @@ from django.db.models import Q, Count
 def search_courses(request):
     query = request.GET['query']
     courses = Course.objects.values(
-            'code', 'name', 'instructor', 'schedule__days', 'schedule__start_time', 
+            'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 'schedule__start_time', 
             'schedule__end_time', 'capacity', enrollments_count=Count('enrollment')
         ).filter(
         Q(code__icontains=query) | Q(name__icontains=query) | Q(instructor__icontains=query)
@@ -29,6 +31,8 @@ def format_schedule(course):
     course.pop('schedule__days')
     course.pop('schedule__start_time')
     course.pop('schedule__end_time')
+    course['prerequisite_name'] = course['prerequisite__name']
+    course.pop('prerequisite__name')
 
 
 @api_view(['POST'])
@@ -51,3 +55,23 @@ def register_course(request):
     
     Enrollment.objects.create(student=request.user, course=course)
     return Response(status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  
+def get_notifications(request):
+    registered_courses = Course.objects.values(
+            'name', 'schedule__start_time', 'schedule__end_time', 'schedule__days'
+        ).filter(enrollment__student=request.user)
+    
+    today_index = datetime.datetime.now().weekday()
+    today = calendar.day_name[today_index]
+    result = []
+
+    for course in registered_courses:
+        if today.lower() in course['schedule__days'].lower():
+            result.append(f'You have {course["name"]} lecture today from '
+                f'{course["schedule__start_time"].strftime("%H:%M")} to '
+                f'{course["schedule__end_time"].strftime("%H:%M")}.')
+
+    return Response(result)
