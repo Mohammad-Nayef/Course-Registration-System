@@ -46,7 +46,9 @@ returns:
             'name': 'xxxx',
             'code': 'xxxx',
             'instructor': 'xxxx',
-            'schedule': 'Sunday, Tuesday, Thursday (9:00 - 10:00)'
+            'days': 'Sunday, Tuesday, Thursday ',
+            'time': '9:00 - 10:00',
+            'room_no': xx
         }
     ]
 

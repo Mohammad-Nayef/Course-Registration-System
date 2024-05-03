@@ -56,3 +56,4 @@ def login(request):
 @permission_classes([IsAuthenticated]) 
 def logout(request):
     auth.logout(request)
+    return Response()
