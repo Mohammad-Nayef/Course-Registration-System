@@ -44,7 +44,6 @@ returns:
     [
         course: {
             'name': 'xxxx',
-            'code': 'xxxx',
             'instructor': 'xxxx',
             'days': 'Sunday, Tuesday, Thursday ',
             'time': '9:00 - 10:00',
@@ -59,7 +58,7 @@ returns:
         'xxxx'
     ]
 
-POST: api/courses [Admin only]
+POST: api/admin/courses [Admin only]
 {
     'code': 'xxxx',
     'name': 'xxxx',
