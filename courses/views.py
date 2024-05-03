@@ -13,8 +13,9 @@ import calendar
 def search_courses(request):
     query = request.GET['query']
     courses = Course.objects.values(
-            'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 'schedule__start_time', 
-            'schedule__end_time', 'capacity', enrollments_count=Count('enrollment')
+            'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 
+            'schedule__start_time', 'schedule__end_time', 'capacity', 
+            enrollments_count=Count('enrollment')
         ).filter(
         Q(code__icontains=query) | Q(name__icontains=query) | Q(instructor__icontains=query)
     )
@@ -27,7 +28,8 @@ def search_courses(request):
 
 def format_schedule(course):
     course['schedule'] = (f'{course["schedule__days"]} '
-            f'({course["schedule__start_time"].strftime("%H:%M")} - {course["schedule__end_time"].strftime("%H:%M")})')
+            f'({course["schedule__start_time"].strftime("%H:%M")} - '
+            f'{course["schedule__end_time"].strftime("%H:%M")})')
     course.pop('schedule__days')
     course.pop('schedule__start_time')
     course.pop('schedule__end_time')
@@ -38,22 +40,23 @@ def format_schedule(course):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])  
 def register_course(request):
-    course_code = request.data.get('course_code')
-    
-    try:
-        course = Course.objects.get(pk=course_code)
+    courses_codes = request.data
+    new_enrollments = []
 
-    except Course.DoesNotExist:
-        return Response(
-            {'error': f'Course with code \'{course_code}\' is not found.'}, 
-            status=status.HTTP_404_NOT_FOUND)
+    for course_code in courses_codes:
+        if Enrollment.objects.filter(student_id=request.user.id, course_id=course_code).exists():
+            return Response(
+                {'error': 'At least one course is already registered.'}, 
+                status=status.HTTP_409_CONFLICT)
+        
+        if not Course.objects.filter(code=course_code).exists():
+            return Response(
+                {'error': 'At least one course is not found.'}, 
+                status=status.HTTP_404_NOT_FOUND)
+
+        new_enrollments.append(Enrollment(student_id=request.user.id, course_id=course_code))
     
-    if Enrollment.objects.filter(student=request.user, course=course).exists():
-        return Response(
-            {'error': f'Course with code \'{course_code}\' is already registered.'}, 
-            status=status.HTTP_409_CONFLICT)
-    
-    Enrollment.objects.create(student=request.user, course=course)
+    Enrollment.objects.bulk_create(new_enrollments)
     return Response(status=status.HTTP_201_CREATED)
 
 

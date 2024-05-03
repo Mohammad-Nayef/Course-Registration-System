@@ -33,9 +33,11 @@ returns:
     ]
 
 POST: api/registered-courses [Authenticated]
-{
-    'course_code': 'xxxx'
-}
+[
+    'course_code1',
+    'course_code2',
+    'course_code3'
+]
 
 GET: api/registered-courses [Authenticated]
 returns: 
@@ -51,8 +53,23 @@ returns:
 GET: api/notifications [Authenticated]
 returns: 
     [
+        'xxxx',
         'xxxx'
     ]
+
+POST: api/courses [Admin]
+{
+    'code': 'xxxx',
+    'name': 'xxxx',
+    'instructor': 'xxxx',
+    'description': 'xxxx'
+    'prerequisite_course_code': 'xxxx',
+    'capacity': xx,
+    'start_time': '9:00',
+    'end_time': '9:00',
+    'days': 'Sunday, Tuesday, Thursday'
+    'room_number': xx,
+}
 
 GET: reports and analytics [Authenticated]
 ```
