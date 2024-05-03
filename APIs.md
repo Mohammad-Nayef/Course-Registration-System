@@ -59,7 +59,7 @@ returns:
         'xxxx'
     ]
 
-POST: api/courses [Admin]
+POST: api/courses [Admin only]
 {
     'code': 'xxxx',
     'name': 'xxxx',

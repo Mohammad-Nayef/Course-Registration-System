@@ -41,30 +41,61 @@ def format_course_response(course):
 @permission_classes([IsAuthenticated])  
 def registered_courses(request):
     if request.method == 'POST':
-        return register_course(request)
+        return register_courses(request)
     
     return get_registered_course(request)
 
 
-def register_course(request):
+def register_courses(request):
     courses_codes = request.data
+    registered_courses = Course.objects.values(
+        'schedule__start_time', 'schedule__end_time', 'schedule__days'
+    ).filter(enrollment__student=request.user)
     new_enrollments = []
-
+    
     for course_code in courses_codes:
         if Enrollment.objects.filter(student_id=request.user.id, course_id=course_code).exists():
             return Response(
-                {'error': 'At least one course is already registered.'}, 
+                'One or more of the given courses are already registered.', 
                 status=status.HTTP_409_CONFLICT)
         
-        if not Course.objects.filter(code=course_code).exists():
+        try:
+            course = Course.objects.get(pk=course_code)
+
+        except Course.DoesNotExist:
             return Response(
-                {'error': 'At least one course is not found.'}, 
+                'One or more of the given courses are not found.', 
                 status=status.HTTP_404_NOT_FOUND)
 
+        for registered_course in registered_courses:
+            if intersected(course, registered_course):
+                return Response(
+                    'One or more of the given courses intersect with the registered courses.', 
+                    status=status.HTTP_409_CONFLICT)
+            
         new_enrollments.append(Enrollment(student_id=request.user.id, course_id=course_code))
     
     Enrollment.objects.bulk_create(new_enrollments)
     return Response(status=status.HTTP_201_CREATED)
+
+
+def intersected(course, registered_course):
+    course_days = set(course.schedule.days.lower().split(', '))
+    registered_course_days = set(registered_course['schedule__days'].lower().split(', '))
+    
+    # Days intersection
+    if course_days.isdisjoint(registered_course_days):
+        return False
+    
+    # Hours intersection
+    return (
+        course.schedule.start_time < registered_course['schedule__start_time'] and
+        course.schedule.end_time > registered_course['schedule__start_time'] or
+        registered_course['schedule__start_time'] < course.schedule.start_time and
+        registered_course['schedule__end_time'] > course.schedule.start_time or
+        course.schedule.start_time == registered_course['schedule__start_time'] and
+        course.schedule.end_time == registered_course['schedule__end_time']
+    )
 
 
 def get_registered_course(request):

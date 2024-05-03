@@ -11,6 +11,7 @@ INSERT INTO courses (code, name, description, prerequisite_id, instructor, capac
 ('CSE301', 'Database Management Systems', 'Introduction to database concepts and systems.', NULL, 'Dr. Williams', 30, 3),
 ('CSE401', 'Software Engineering', 'Principles and practices of software engineering.', 'CSE201', 'Prof. Brown', 35, 4),
 ('CSE501', 'Artificial Intelligence', 'Study of artificial intelligence techniques.', 'CSE301', 'Dr. Davis', 25, 5);
+('CSE601', 'Artificial Intelligence', 'Study of artificial intelligence techniques.', 'CSE301', 'Dr. Davis', 25, 5);
 
 INSERT INTO enrollments (student_id, course_id) VALUES
 (1, 'CSE101'),
