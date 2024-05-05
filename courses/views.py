@@ -2,10 +2,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Course, Enrollment
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.db.models import Q, Count
 import datetime
 import calendar
+from .serializers import CourseSerializer, ScheduleSerializer
 
 
 @api_view(['GET'])
@@ -80,6 +81,7 @@ def register_courses(request):
 
 
 def intersected(course, registered_course):
+    print(course.schedule)
     course_days = set(course.schedule.days.lower().split(', '))
     registered_course_days = set(registered_course['schedule__days'].lower().split(', '))
     
@@ -141,3 +143,37 @@ def get_notifications(request):
                 f'{course["schedule__end_time"].strftime("%H:%M")}.')
 
     return Response(result)
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])  
+def create_course(request):
+    schedule = {
+        'days': request.data.get('days'),
+        'start_time': request.data.get('start_time'),
+        'end_time': request.data.get('end_time'),
+        'room_no': request.data.get('room_number')
+    }
+    schedule_serializer = ScheduleSerializer(data=schedule)
+
+    if schedule_serializer.is_valid():
+        created_schedule = schedule_serializer.save()
+    else:
+        return Response(schedule_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    course = {
+        'code': request.data.get('code'),
+        'name': request.data.get('name'),
+        'instructor': request.data.get('instructor'),
+        'description': request.data.get('description'),
+        'prerequisite': request.data.get('prerequisite_course_code'),
+        'capacity': request.data.get('capacity'),
+        'schedule': created_schedule.id,
+    }
+    course_serializer = CourseSerializer(data=course)
+    
+    if course_serializer.is_valid():
+        course_serializer.save()
+        return Response(status=status.HTTP_201_CREATED)
+    
+    return Response(course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
