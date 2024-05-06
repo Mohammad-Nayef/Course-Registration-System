@@ -12,7 +12,11 @@ from .serializers import CourseSerializer, ScheduleSerializer
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def search_courses(request):
-    query = request.GET['query']
+    query = request.GET.get('query')
+
+    if query is None:
+        return Response('\'query\' string parameter is needed', status=status.HTTP_400_BAD_REQUEST)
+
     courses = Course.objects.values(
         'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 
         'schedule__start_time', 'schedule__end_time', 'capacity', 
@@ -193,3 +197,9 @@ def create_course(request):
         return Response(status=status.HTTP_201_CREATED)
     
     return Response(course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser]) 
+def test(request):
+    return Response()

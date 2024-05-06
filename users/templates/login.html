@@ -119,42 +119,25 @@
     </div>
   </div>
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
       event.preventDefault();
       var form = event.target;
       var formData = new FormData(form);
       
-      fetch("/api/login", {
-          method: "POST",
+      fetch('/api/login', {
+          method: 'POST',
           body: formData
       })
       .then(response => {
           if (response.ok) {
             window.location.href = '/';
           } else {
-            alert('Failed to login.')
+            return response.text();
           }
       })
-      .catch(error => {
-        alert('An error occured.');
-      });
-    });
-
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      var form = event.target;
-      var formData = new FormData(form);
-      
-      fetch("/api/login", {
-          method: "POST",
-          body: formData
-      })
-      .then(response => {
-          if (response.ok) {
-            window.location.href = '/';
-          } else {
-            alert('Failed to login.')
-          }
+      .then(errorMessage => {
+        if (errorMessage)
+          alert(errorMessage);
       })
       .catch(error => {
         alert('An error occured.');

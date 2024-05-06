@@ -49,7 +49,7 @@ def login(request):
         return Response(status=status.HTTP_200_OK)
     else:
         return Response(
-            {'error': 'Username or password is invalid.'}, status=status.HTTP_401_UNAUTHORIZED)
+            'Username or password is invalid.', status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['POST'])

@@ -156,8 +156,12 @@
         if (response.ok) {
           window.location.href = 'login';
         } else {
-          alert('Failed to register user.');
+          return response.text();
         }
+      })
+      .then(errorMessage => {
+        if (errorMessage)
+          alert(errorMessage);
       })
       .catch(error => {
         alert('An error occured.');
