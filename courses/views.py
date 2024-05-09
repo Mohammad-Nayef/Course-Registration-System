@@ -47,8 +47,8 @@ def format_course_response(course):
 def registered_courses(request):
     if request.method == 'POST':
         return register_courses(request)
-    
-    return get_registered_course(request)
+    elif request.method == 'GET':
+        return get_registered_course(request)
 
 
 def register_courses(request):
@@ -165,8 +165,15 @@ def get_notifications(request):
     return Response(result)
 
 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @permission_classes([IsAdminUser])  
+def courses_for_admin(request):
+    if request.method == 'POST':
+        return create_course(request)
+    elif request.method == 'GET':
+        return get_courses_for_admin(request)
+
+
 def create_course(request):
     schedule = {
         'days': request.data.get('days'),
@@ -199,7 +206,19 @@ def create_course(request):
     return Response(course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser]) 
-def test(request):
-    return Response()
+def get_courses_for_admin(request):
+    courses = Course.objects.values(
+        'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 
+        'schedule__start_time', 'schedule__end_time', 'capacity', 
+        enrollments_count=Count('enrollment')
+    )
+
+    order = request.GET.get('order-by')
+
+    if order == 'popularity':
+        courses = courses.order_by('-enrollments_count')
+
+    for course in courses:
+        format_course_response(course)
+
+    return Response(courses)

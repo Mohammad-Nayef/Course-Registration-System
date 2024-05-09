@@ -87,7 +87,24 @@ POST: api/admin/courses [Admin only]
     'room_number': xx,
 }
 ```
+### Get the courses for admin ordered by popularity:
+```http
+GET: api/admin/courses?order-by=popularity [Admin only]
+returns: 
+    [
+        course: {
+            'name': 'xxxx',
+            'code': 'xxxx',
+            'instructor': 'xxxx',
+            'capacity': x,
+            'enrollments_count': x,
+            'schedule': 'Sun, Tue, Thu (9:00 - 10:00)',
+            'description': 'xxxx',
+            'prerequisite_name': 'xxxx'
+        }
+    ]
+```
 ### Get reports and analytics:
 ```http
-GET: reports and analytics [Authenticated]
+GET: api/admin/reports [Admin only]
 ```
