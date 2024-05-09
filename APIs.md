@@ -107,4 +107,9 @@ returns:
 ### Get reports and analytics:
 ```http
 GET: api/admin/reports [Admin only]
+returns: {
+    'number_of_students': xx,
+    'number_of_courses': xx,
+    'number_of_enrollments': xx
+}
 ```

@@ -7,6 +7,7 @@ from django.db.models import Q, Count
 import datetime
 import calendar
 from .serializers import CourseSerializer, ScheduleSerializer
+from django.contrib.auth.models import User
 
 
 @api_view(['GET'])
@@ -222,3 +223,18 @@ def get_courses_for_admin(request):
         format_course_response(course)
 
     return Response(courses)
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])  
+def get_reports(request):
+    number_of_students = User.objects.filter(is_staff=False, is_superuser=False).count()
+    number_of_courses = Course.objects.count()
+    number_of_enrollments = Enrollment.objects.count()
+    reports = {
+        'number_of_students': number_of_students,
+        'number_of_courses': number_of_courses,
+        'number_of_enrollments': number_of_enrollments
+    }
+
+    return Response(reports)
