@@ -8,6 +8,7 @@ import datetime
 import calendar
 from .serializers import CourseSerializer, ScheduleSerializer
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 
 
 @api_view(['GET'])
@@ -238,3 +239,26 @@ def get_reports(request):
     }
 
     return Response(reports)
+
+
+@api_view(['GET'])
+def index(request):
+    if not request.user.is_authenticated:
+        return redirect('login/')
+    
+    if request.user.is_staff:
+        return render(request, 'admin_index.html')
+
+    return render(request, 'index.html')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def schedule_page(request):
+    return render(request, 'schedule.html')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def notifications_page(request):
+    return render(request, 'notifications.html')

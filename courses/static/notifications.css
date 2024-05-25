@@ -1,0 +1,118 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+
+body {
+    background-color: #F7F5F2;
+}
+
+.my-container {
+    width: 100%;
+    height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.side-bar {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    
+    background: #ffffff 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.side-bar>.logo {
+    margin-top: 10%;
+    margin-bottom: 5%;
+
+    width: 30%;
+    height: 11%;
+}
+
+.student-name-div {
+    text-align: left;
+    font: normal normal bold 20px/25px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin-bottom: 30%;
+}
+
+.scaffold {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    min-height: 100%;
+    background-color:  #F7F5F2;
+}
+
+.header {
+    width: 100%;
+    padding-left: 8%;
+    padding-bottom: 5%;
+}
+
+.greeting {
+    margin-top: 5%;
+    text-align: left;
+    font: normal normal bold 40px/48px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+
+}
+
+.welcome {
+    margin-top: 0.5%;
+    text-align: left;
+    font: normal normal normal 20px/24px Helvetica;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+}
+
+.notifications {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.notification-card {
+    margin-top: 2%;
+    width: 95%;
+    padding-block: 2%;
+    padding-inline: 3%;
+    
+    background: #FFFFFF 0% 0% no-repeat padding-box; 
+    box-shadow: 0px 3px 15px #00000029;
+    border-radius: 20px;
+    opacity: 1;
+}
+
+.notification-date {
+    text-align: left;
+    font: normal normal bold 15px/18px Helvetica;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+}
+
+.notification-content {
+    margin-top: 1%;
+    text-align: left;
+    font: normal normal normal 20px/24px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}

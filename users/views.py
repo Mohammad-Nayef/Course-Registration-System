@@ -20,13 +20,6 @@ def login_page(request):
     return render(request, 'login.html')
 
 
-@api_view(['GET'])
-def home_page(request):
-    if not request.user.is_authenticated:
-        return redirect('login/')
-    return render(request, 'home.html')
-
-
 @api_view(['POST'])
 def register(request):
     user_serializer = UserSerializer(data=request.data)
