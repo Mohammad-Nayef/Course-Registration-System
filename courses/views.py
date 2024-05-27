@@ -262,3 +262,9 @@ def schedule_page(request):
 @permission_classes([IsAuthenticated])
 def notifications_page(request):
     return render(request, 'notifications.html')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def schedule_page(request):
+    return render(request, 'schedule.html')
