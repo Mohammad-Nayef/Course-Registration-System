@@ -1,0 +1,496 @@
+.container {
+    margin-top: 10rem;
+    border-radius: 20px;
+    background-color: #EBD5A0;
+    padding: 3rem;
+}
+.container .row .n-c-r {
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 50px !important;
+    color: #000000;
+    font-family: Hacen Tunisia;
+    font-weight: bold;
+   
+}
+.description {
+    height: 64%;
+}
+
+.sidebar {
+
+    height: 100%;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 56px;
+    width: 15.3%;
+    
+}
+main {
+    margin-left: 280px; 
+    padding: 20px;
+  
+}
+.submit{
+    margin-top: 10px;
+}
+
+.add-course-div {
+    margin-top: 20px;
+    height: 5vh;
+    width: 100%;
+    background-color: #1C5891;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+font-family:  Hacen Tunisia;
+font-weight: bold;
+}
+
+.add-course-button {
+    border-radius: 15px;
+    background-color: #1C5891;
+    border: none;
+    font-size: 1rem;
+    color: white;
+}
+.add-course-button:hover  {
+    background-color: #1C5891; 
+}
+
+.days
+{
+    margin-top: 40px;
+}
+
+
+.sidebar {
+    background-color: white;
+    color: black;
+    min-height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+.sidebar a {
+    color: black;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    color: #1C5891;
+}
+.sidebar .nav-link.active {
+    background-color: #495057;
+    color: #1C5891;
+}
+.main {
+    margin-left: 250px;
+    padding: 1rem;
+    transition: margin-left 0.3s ease;
+}
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+.main.collapsed {
+    margin-left: 0;
+}
+@media (max-width: 672px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 1rem;
+        transform: translateX(-100%);
+    }
+    .main {
+        margin-left: 0;
+    }
+    .sidebar.show {
+        transform: translateX(0);
+    }
+}
+
+.add-info
+{
+    background-color: #FFFFFF ;
+    border-radius: 14px;
+
+}
+.day-check-box
+
+{
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.form-label
+{
+    color: #707070;
+    font-size: 18px;
+    opacity: 100%;
+    font-family:Hacen Tunisia;
+    font-weight: bold;
+}
+.form-control
+{
+    background-color: #F7F7F7;
+}
+.link
+{
+color: #A0A0A0;
+font-size:22px;
+font-family: Helvetica;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 22px; 
+    text-decoration: none;
+    color: #A0A0A0; 
+    transition:transform 0.7s ease;
+}
+
+.link:hover {
+    color: #1C5891; 
+    transform: scale(1.3); 
+}
+
+.side-logo {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+  }
+  .side-text {
+    font-size: 20px;
+    padding-top: 5px;
+  }
+  .side-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: #a0a0a0;
+    font-family: normal normal normal 25px/30px Helvetica;
+    transition: transform 0.2s ease;
+    float: left;
+    display: flex;
+    opacity: 100%;
+  }
+  .side-button:hover {
+    transform: translateY(-3px); /* Move text up slightly on hover */
+  }
+  .sidebar-image
+  {
+   
+    margin-left: 30%;
+    border: 5px solid #A0A0A0;
+  }
+.sidebar-txt {
+    font-family: Helvetica;
+    margin-left: 16px;
+    color: #000000;
+    opacity: 10;
+    font-size: 25px !important;
+   
+}
+.hr
+{
+ margin-left: 20px;
+ margin-right: 20px;
+}
+
+.table-header
+{
+    color: #707070;
+    font-family: Hacen Tunisia;
+    font-weight: bold;
+    font-size: 40px;
+}
+.details-button
+{
+    margin-top: 2%;
+    width: 70%;
+    min-height: 40%;
+    background-color: #1A558D;
+    border-radius: 15px;
+    color: #FFFFFF;
+}
+
+.details-statistics
+{
+    font-size: 25px;
+    font-family: Hacen Tunisia;
+}
+/*Search Style*/
+
+
+.search {
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    opacity: 1;
+    margin-bottom: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.search>input {
+    
+    width: 90%;
+    height: 90%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    border-radius: 10px;
+    background: #EDEDED 0% 0% no-repeat padding-box;
+    font: normal normal bold 25px/30px Helvetica;
+    margin-left: 1%;
+}
+
+.search>.search-button-div {
+    width: 7%;
+    height: 90%;
+    background: #EDEDED 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+    border: none;
+    outline: none;
+    margin-right: 1%;
+}
+
+.search-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.search-button>img {
+    width: 50%;
+    height: 50%;
+}
+
+.course {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 1%;
+    border-radius: 14px;
+cursor: pointer;
+
+}
+
+.course-name {
+    font: normal normal bold 20px/25px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+
+
+.course:first-child {
+    margin-top: 1.5%;
+    background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.course-check {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.course-left {
+    width: 90%;
+    transition: height 0.3s ease;  /* Adjust the time and easing function to suit your preference */
+    overflow: hidden;
+}
+
+.course-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5%;
+}
+
+.course-description {
+    display: none;
+}
+
+.course-description {
+    display: none;
+    margin-top: 3%;
+    width: 100%;
+    font: normal normal normal 15px/20px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+.add-course-div {
+    margin-top: 1.5%;
+    margin-left: 20px;
+    height: 5vh;
+    width: 25%;
+    background-color: #1C5891;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.add-course-button {
+    border-radius: 15px;
+    background-color: #1C5891;
+    border: none;
+    font-size: 1rem;
+    color: white;
+}
+/*******/
+
+/*Notfications Style */
+
+.greeting {
+    margin-top: 5%;
+    text-align: left;
+    font: normal normal bold 40px/48px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin-left: 30px;
+
+}
+
+.welcome {
+    margin-top: 0.5%;
+    text-align: left;
+    font: normal normal normal 20px/24px Helvetica;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+    margin-left: 30px;
+
+}
+
+.notifications {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.notification-card {
+    margin-top: 2%;
+    width: 95%;
+    padding-block: 2%;
+    padding-inline: 3%;
+    
+    background: #FFFFFF 0% 0% no-repeat padding-box; 
+    box-shadow: 0px 3px 15px #00000029;
+    border-radius: 20px;
+    opacity: 1;
+}
+
+
+.notification-content {
+    margin-top: 1%;
+    text-align: left;
+    font: normal normal normal 20px/24px Helvetica;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+
+/******/
+
+/* schedule Style*/
+.scaffold {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    min-height: 100%;
+}
+
+.student-schedule {
+    width: 70%;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: #EBD5A0;
+}
+
+.student-schedule>tbody>tr {
+    border-top: 1px solid black;
+}
+
+th{
+    padding-left: 30px;
+    padding-block: 10px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+.student-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 20px;
+    color: white;
+    
+}
+
+.student-info>div {
+    background-color: #1C5891;
+    border-radius: 10px;
+    margin-inline: 10px;
+    padding-inline: 20px;
+}
+
+.student-info0 {
+    width: 70%;
+    background-color: #1C5891;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.student-info0>h1 {
+    padding-block: 25px;
+    text-align: center;
+    color: white;
+}
+
+.instructor-name {
+    font-size: 12px;
+}
+
+.room {
+    font-size: 12px;
+}
+
+
+/*********/

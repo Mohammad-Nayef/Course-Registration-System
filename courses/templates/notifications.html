@@ -4,75 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'notifications.css' %}">
+    <title>Notfications</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styleadd.css' %}">
+ <link rel="shortcut icon" type="x-icon" href="images\notfication.png">
+
 </head>
-<body>
-    <div class="my-container">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-              <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-              <span class="fs-4">Sidebar</span>
-            </a>
-            <hr>
+<body class="bg-body-tertiary">
+    <button class="btn btn-outline-primary d-md-none m-5" id="toggleSidebar">Toggle Sidebar</button>
+
+    <div class="sidebar" id="sidebar">
+        <div>
+             <img src="images/wolf.jpg" alt="" width="100" height="100" class="rounded-circle me-3 sidebar-image"><br>
+<br>
+
+<a href="" class="d-flex align-items-center mb-3 sidebar-header text-decoration-none">
+    <svg class="bi pe-none me-2 " width="40" height="32"></svg>
+    <div class="fs-4 sidebar-txt">Hello <span id="short-name"></span></div>
+</a>
+            <hr class="hr">
             <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-body-emphasis">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-body-emphasis">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                  Orders
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-body-emphasis">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-body-emphasis">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                  Customers
-                </a>
-              </li>
+                <li class="nav-item">
+                    <a href="courseSearch.html" class="nav-link " aria-current="page">
+                        <button class="side-button">
+                            <span><img src="images/courseregister.png" class="side-logo" /></span >
+                           <span class="side-text">Registration</span>
+                          </button>  
+                    </a> 
+                    
+                    <a href="Schedule.html" class="nav-link " aria-current="page">
+                        <button class="side-button">
+                            <span><img src="images/schedule.png" class="side-logo" /></span >
+                           <span class="side-text">My Schedule</span>
+                          </button>  
+                    </a>
+                    <a href="notfications.html" class="nav-link " aria-current="page">
+                        <button class="side-button">
+                            <span><img src="images/homework.png" class="side-logo" /></span >
+                           <span class="side-text">Notfications</span>
+                          </button>  
+                    </a>
+
+                </li>
             </ul>
-            <hr>
-            <div class="dropdown">
-              <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </div>
-            </div>
-    <div class="scaffold">
+        </div>
+        <div class="dropdown mt-auto">
+            <a href="#" class="d-flex align-items-center  text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="images/wolf.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>User</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+             
+                <li><a class="dropdown-item" href="#"> <button class="side-button">
+                    <span><img src="images/exit.png" class="side-logo" /></span >
+                   <span class="side-text">sign-out</span>
+                  </button> </a></li>
+            </ul>
+        </div>
+        <button class="btn btn-outline-secondary mt-3 d-md-none" id="hideSidebar">Hide Sidebar</button>
+
+    </div>
+    <main class="main" id="mainContent">
         <div class="header">
-            <div class="greeting"><span>Hello, Karam Abu Ghaboush</span></div>
+            <div class="greeting"><span>Hello, <span id="user-name"></span></span></div>
             <div class="welcome"><span>Welcome to PPU Reg</span></div>
         </div>
-        <div class="notifications" id="notifications">
+        <div class="container">
+           
+            <div class="row g-5">
+                
+                <div class="my-3 p-3">
+                    <div class="notifications" id="notifications">
+                        <div class="notification-card">
+                            <div class="notification-content">
+                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias illo totam ad doloremque esse quibusdam expedita distinctio saepe, accusamus deserunt? Ipsam veritatis explicabo dolorum, ducimus accusamus ut suscipit eius similique.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
 
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{% static 'notifications.js' %}"></script>
 </body>

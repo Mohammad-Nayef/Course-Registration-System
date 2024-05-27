@@ -1,3 +1,23 @@
+
+
+function fetchUserName() {
+    return fetch('api/user/name')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        });
+}
+
+function updateGreeting(userName) {
+    const userNameElement = document.getElementById('user-name');
+    const shortNameElement = document.getElementById('short-name');
+    userName = userName.slice(1, -1); // to remove " " around the name
+    userNameElement.textContent = userName;
+    shortNameElement.textContent = userName.split(' ')[0];
+}
+
 function fetchNotifications() {
     return fetch('api/notifications')
         .then(response => {
@@ -39,4 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchNotifications()
         .then(notifications => displayNotifications(notifications))
         .catch(error => console.error('Error fetching notifications:', error));
+    fetchUserName()
+        .then(userName => {
+            updateGreeting(userName);
+        })
+        .catch(error => console.error('Error fetching user name:', error));
 });
