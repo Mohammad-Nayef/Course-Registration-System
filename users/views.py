@@ -50,3 +50,9 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return Response()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) 
+def get_user_name(request):
+    return Response(f"{request.user.first_name} {request.user.last_name}")

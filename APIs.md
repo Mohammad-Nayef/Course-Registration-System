@@ -113,3 +113,10 @@ returns: {
     'number_of_enrollments': xx
 }
 ```
+### Get name of the user
+```http
+GET: api/user/name
+returns: {
+    'user name'
+}
+```
