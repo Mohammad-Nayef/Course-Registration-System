@@ -247,7 +247,7 @@ def index(request):
         return redirect('login/')
     
     if request.user.is_staff:
-        return render(request, 'admin_index.html')
+        return render(request, 'admin-index.html')
 
     return render(request, 'index.html')
 
@@ -265,6 +265,6 @@ def notifications_page(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def schedule_page(request):
-    return render(request, 'schedule.html')
+@permission_classes([IsAdminUser])  
+def statistics_page(request):
+    return render(request, 'statistics.html')

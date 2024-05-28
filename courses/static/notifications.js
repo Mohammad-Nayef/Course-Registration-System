@@ -37,7 +37,7 @@ function displayNotifications(notifications) {
         noNotificationsMessage.classList.add('no-notifications-message');
         
         const span = document.createElement('span');
-        span.textContent = 'There are no notifications at this time.';
+        span.textContent = 'There are no notifications';
 
         noNotificationsMessage.appendChild(span);
         notificationsContainer.appendChild(noNotificationsMessage);

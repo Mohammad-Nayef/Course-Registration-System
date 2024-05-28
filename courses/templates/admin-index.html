@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Course Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styleadd.css' %}">
+    <link rel="shortcut icon" type="x-icon" href="admin.png">
+    <script src="{% static 'sidebar.js' %}" defer></script>
+    <script src="{% static 'admin-index.js' %}"></script>
+
+</head>
+<body class="bg-body-tertiary">
+    <button class="btn btn-outline-primary d-md-none m-5" id="toggleSidebar">Toggle Sidebar</button>
+
+    <div class="sidebar" id="sidebar">
+        <div>
+            <img src="{% static 'images/ppu.png' %}" alt="" width="100" height="100" class="rounded-circle me-3 sidebar-image"><br>
+<br>
+
+<a href="" class="d-flex align-items-center mb-3 sidebar-header text-decoration-none">
+    <svg class="bi pe-none me-2 " width="40" height="32"></svg>
+    <div class="fs-4 sidebar-txt">Hello <span id="short-name">User</span></div>
+</a>
+            <hr class="hr">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link " aria-current="page">
+                        <button class="side-button">
+                            <span><img src="{% static 'images/create-course.png' %}" class="side-logo" /></span>
+                            <span class="side-text">Create a Course</span>
+                        </button>  
+                    </a> 
+
+                    <a href="statistics" class="nav-link " aria-current="page">
+                        <button class="side-button">
+                            <span><img src="{% static 'images/stats.png' %}" class="side-logo" /></span >
+                        <span class="side-text">Statistics</span>
+                        </button>  
+                    </a>
+                </li>
+        
+        </div>
+
+                <li>
+                    <a href="" class="nav-link " aria-current="page" id="logout">
+                        <button class="side-button">
+                            <span><img src="{% static 'images/exit.png' %}" class="side-logo" /></span >
+                        <span class="side-text">Sign Out</span>
+                        </button>  
+                    </a>
+                </li>
+        </ul>
+        <button class="btn btn-outline-secondary mt-3 d-md-none" id="hideSidebar">Hide Sidebar</button>
+    </div>
+
+    <main class="main" id="mainContent">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-12 n-c-r">
+                  New Course Registration
+                </div>
+                <form id="courseForm" class="needs-validation" novalidate="">
+                    <div class="row g-3 add-info ">
+                        <div class="col-md-8 mb-3">
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="courseCode" class="form-label">Course Code</label>
+                                    <input type="text" class="form-control" id="courseCode" placeholder="" value="" required="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="startTime" class="form-label">Start time</label>
+                                    <input type="text" class="form-control" id="startTime" placeholder="" value="" required="">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="endTime" class="form-label">End time</label>
+                                    <input type="text" class="form-control" id="endTime" placeholder="" value="" required="">
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="courseName" class="form-label">Course Name</label>
+                                    <input type="text" class="form-control" id="courseName" placeholder="" value="" required="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="room" class="form-label">Room</label>
+                                    <input type="text" class="form-control" id="room" placeholder="" value="" required="">
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="courseInstructor" class="form-label">Course Instructor</label>
+                                    <input type="text" class="form-control" id="courseInstructor" placeholder="" value="" required="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="capacity1" class="form-label">Capacity</label>
+                                    <input type="text" class="form-control" id="capacity1" placeholder="" value="" required="">
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="prerequisiteCode" class="form-label">Prerequisite Code</label>
+                                    <input type="text" class="form-control" id="prerequisiteCode" placeholder="" value="" required="">
+                                </div>
+                                <div class="col-sm-6 row days">
+                                    <div class="col-md-1 mt-4 form-label">Days</div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Sun</div><div><input type="checkbox" name="sunCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Mon</div><div><input type="checkbox" name="monCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Tue</div><div><input type="checkbox" name="tueCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Wed</div><div><input type="checkbox" name="wedCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Thu</div><div><input type="checkbox" name="thuCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Fri</div><div><input type="checkbox" name="friCheckBox"></div></div>
+                                    <div class="col-md-1 ms-3 form-label"><div>Sat</div><div><input type="checkbox" name="satCheckBox"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 g-3 mb-3">
+                            <label for="courseDescription" class="form-label">Course Description</label>
+                            <textarea class="form-control description" id="courseDescription" placeholder="" value="" required=""></textarea>
+                            <div class="add-course-div mt-3">
+                                <input type="submit" value="Register" class="add-course-button btn btn-primary">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

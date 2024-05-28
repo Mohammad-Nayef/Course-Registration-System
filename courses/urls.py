@@ -11,4 +11,5 @@ urlpatterns = [
     path('schedule', views.schedule_page, name='schedule_page'),
     path('notifications', views.notifications_page, name='notifications_page'),
     path('schedule', views.schedule_page, name='schedule_page'),
+    path('statistics', views.statistics_page, name='statistics_page'),
 ]

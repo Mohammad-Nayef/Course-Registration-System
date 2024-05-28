@@ -18,18 +18,7 @@
     height: 64%;
 }
 
-.sidebar {
 
-    height: 100%;
-    background-color: #FFFFFF;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding-top: 56px;
-    width: 15.3%;
-    
-}
 main {
     margin-left: 280px; 
     padding: 20px;
@@ -69,6 +58,7 @@ font-weight: bold;
 }
 
 
+
 .sidebar {
     background-color: white;
     color: black;
@@ -97,7 +87,6 @@ font-weight: bold;
 .main {
     margin-left: 250px;
     padding: 1rem;
-    transition: margin-left 0.3s ease;
 }
 .sidebar.collapsed {
     transform: translateX(-100%);
@@ -284,8 +273,9 @@ font-family: Helvetica;
 }
 
 .search-button>img {
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
+    padding-bottom: 12%;
 }
 
 .course {
@@ -317,10 +307,13 @@ cursor: pointer;
     height: 30px;
     margin-left: 10px;
 }
-
+.course-enrollment
+{
+    font-weight:bold ;
+}
 .course-left {
     width: 90%;
-    transition: height 0.3s ease;  /* Adjust the time and easing function to suit your preference */
+    transition: height 0.3s ease; 
     overflow: hidden;
 }
 
@@ -333,6 +326,16 @@ cursor: pointer;
 
 .course-description {
     display: none;
+}
+ .prerequisite-Code
+{
+    background-color: #CBAF6B ;
+    color: #FFFFFF;
+    border-radius: 7px;
+    font-family: Helvetica;
+    font-size: 14px;
+    padding: 2px;
+  
 }
 
 .course-description {
@@ -410,6 +413,13 @@ cursor: pointer;
     opacity: 1;
 }
 
+.notification-date {
+    text-align: left;
+    font: normal normal bold 15px/18px Helvetica;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+}
 
 .notification-content {
     margin-top: 1%;

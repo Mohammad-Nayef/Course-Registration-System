@@ -24,7 +24,7 @@ POST: api/logout
 ```
 ### Search courses:
 ```http
-GET: api/courses/search?query=searchText [Authenticated]
+GET: api/courses?query=searchText [Authenticated]
 returns: 
     [
         course: {

@@ -16,8 +16,8 @@ class CourseSchedule(models.Model):
 class Course(models.Model):
     code = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=50, null=False)
-    description = models.CharField(max_length=200)
-    prerequisite = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
+    description = models.CharField(max_length=200, null=True, default=None)
+    prerequisite = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
     instructor = models.CharField(max_length=50)
     capacity = models.IntegerField()
     schedule = models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL, null=True)

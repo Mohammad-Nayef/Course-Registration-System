@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule</title>
+    <title>Search for Courses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styleadd.css' %}">
     <link rel="shortcut icon" type="x-icon" href="admin.png">
-    <script src="{% static 'sidebar.js' %}" defer></script>
+    <script src="{% static 'sidebar.js' %}"></script>
+    <script src="{% static 'index.js' %}"></script>
+
 </head>
 <body class="bg-body-tertiary">
     <button class="btn btn-outline-primary d-md-none m-5" id="toggleSidebar">Toggle Sidebar</button>
@@ -28,7 +30,7 @@
                     <a href="/" class="nav-link " aria-current="page">
                         <button class="side-button">
                             <span><img src="{% static 'images/courseregister.png' %}" class="side-logo" /></span>
-                        <span class="side-text">Search for Courses</span>
+                            <span class="side-text">Search for Courses</span>
                         </button>  
                     </a> 
 
@@ -60,32 +62,39 @@
         </ul>
         <button class="btn btn-outline-secondary mt-3 d-md-none" id="hideSidebar">Hide Sidebar</button>
     </div>
-
+    
     <main class="main" id="mainContent">
+        <div class="container">
 
-    <div class="scaffold">
-        <div class="student-info0">
-            <h1>Student Schedule</h1>
+            <div class="search  bg-light">
+             
+                <input type="text" class="search-input " placeholder="Search for a course" id="search-placeholder">
+
+                <div class="search-button-div">
+                    <button class="submit search-button" id="search-button">
+                        <img src="{% static 'images/search.png' %}" alt="search">
+                    </button>
+                </div>
+            
+            </div> 
+    
+            <div class="row g-5">
+                <div class="col-12 n-c-r"> </div>
+                                 
+                <div style="width: 96.8%;margin-left: 21px;" class="my-3 p-3 bg-body rounded shadow-sm">
+                    <form action="#" id="search-result"></form>
+
+                </div>
+                <div class="add-course-div">
+                    <input type="submit" value="add to courses" class="add-course-button btn btn-primary" id="add-courses">
+            
+                  </div>
+               
+                </div>
+            </div>
         </div>
-        <table class="student-schedule">
-            <thead>
-                <tr>
-                  <th scope="col">Course</th>
-                  <th scope="col">Sat</th>
-                  <th scope="col">Sun</th>
-                  <th scope="col">Mon</th>
-                  <th scope="col">Tue</th>
-                  <th scope="col">Wed</th>
-                  <th scope="col">Thu</th>
-                  <th scope="col">Fri</th>
-                </tr>
-              </thead>
-              <tbody id="schedule-body"></tbody>
-          </table>
-    </div>
-
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="{% static 'schedule.js' %}"></script>
 </body>
 </html>
+
+
