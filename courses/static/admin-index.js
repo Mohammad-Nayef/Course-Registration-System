@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('add-course').addEventListener('click', async function(event) {
-        event.preventDefault(); 
         const courseCode = document.getElementById('courseCode').value;
         const courseName = document.getElementById('courseName').value;
         const courseInstructor = document.getElementById('courseInstructor').value;
@@ -45,22 +44,26 @@ document.addEventListener('DOMContentLoaded', () => {
             room_number: roomNumber
         };
 
-        try {
-            const response = await fetch('api/admin/courses', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken 
-                },
-                body: JSON.stringify(data)
-            });
+        const response = await fetch('api/admin/courses', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken 
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
             if (!response.ok) {
-                throw new Error('Registration failed.');
+                return response.text();
             }
-
             alert('Course registered successfully.')
-        } catch (error) {
-            alert(error.message);
-        }
+        })
+        .then(error => {
+            if (error)
+                alert(error)
+        })
+        .catch(error => {
+            alert('Error: ' + error.message);
+        });
     });
 })
