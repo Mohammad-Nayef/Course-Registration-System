@@ -324,10 +324,7 @@ cursor: pointer;
     margin-top: 0.5%;
 }
 
-.course-description {
-    display: none;
-}
- .prerequisite-Code
+ .prerequisite-Code, #code
 {
     background-color: #CBAF6B ;
     color: #FFFFFF;

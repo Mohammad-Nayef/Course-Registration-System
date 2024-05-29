@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from .models import Course, Enrollment
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from django.db.models import Q, Count
+from django.db.models import Count, Q, Case, When, BooleanField
 import datetime
 import calendar
 from .serializers import CourseSerializer, ScheduleSerializer
@@ -23,6 +23,11 @@ def search_courses(request):
         'code', 'name', 'instructor', 'description', 'prerequisite__name', 'schedule__days', 
         'schedule__start_time', 'schedule__end_time', 'capacity', 
         enrollments_count=Count('enrollment')
+    ).annotate(
+        is_registered=Case(
+            When(enrollment__student=request.user, then=True),
+            default=False,
+            output_field=BooleanField())
     ).filter(
         Q(code__icontains=query) | Q(name__icontains=query) | Q(instructor__icontains=query)
     )
